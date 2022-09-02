@@ -10,7 +10,7 @@ public class BookTrade {
 	private static void showTadingOperations() {
 		String yesOrno;
 		TradePrint trade = new TradePrint();
-		
+
 		try (Scanner scanner = new Scanner(System.in)) {
 			boolean flag = false;
 			int choice;
@@ -30,11 +30,11 @@ public class BookTrade {
 						case 3:
 							System.out.println("Do you really want to exit (y/n)");
 							yesOrno = scanner.next();
-							
-							if ("y".equalsIgnoreCase(yesOrno)) {
+
+							if ("y".equalsIgnoreCase(yesOrno) || "yes".equalsIgnoreCase(yesOrno)) {
 								System.out.println("Bye - have a good day");
 								flag = true;
-							} else if ("n".equalsIgnoreCase(yesOrno)) {
+							} else if ("n".equalsIgnoreCase(yesOrno) || "no".equalsIgnoreCase(yesOrno)) {
 								continue;
 							}
 							break;

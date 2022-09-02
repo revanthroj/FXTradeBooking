@@ -47,11 +47,11 @@ public class TradePrint {
 
 	private static void isgetRate() {
 		String getRate = sc.next();
-		if (("yes").equalsIgnoreCase(getRate)) {
+		if (("yes").equalsIgnoreCase(getRate) || ("y").equalsIgnoreCase(getRate)) {
 			System.out.println("\nYou are transferring INR " + transferAmount + " to " + username
 					+ "(Assuming that rate was " + tranferRate + ")\n");
 			book();
-		} else if (("no").equalsIgnoreCase(getRate)) {
+		} else if (("no").equalsIgnoreCase(getRate) || ("n").equalsIgnoreCase(getRate)) {
 			book();
 		}
 	}
