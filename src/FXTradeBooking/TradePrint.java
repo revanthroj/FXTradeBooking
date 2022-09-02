@@ -47,8 +47,8 @@ public class TradePrint {
 	private static void isgetRate() {
 		String getRate = sc.next();
 		if (("yes").equalsIgnoreCase(getRate)) {
-			System.out.println("You are transferring INR " + transferAmount + " to " + username
-					+ "(Assuming that rate was " + tranferRate + ")");
+			System.out.println("\nYou are transferring INR " + transferAmount + " to " + username
+					+ "(Assuming that rate was " + tranferRate + ")\n");
 			book();
 		} else if (("no").equalsIgnoreCase(getRate)) {
 			book();
