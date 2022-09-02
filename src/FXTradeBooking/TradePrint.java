@@ -16,14 +16,13 @@ public class TradePrint {
 
 	private static Long usdToinr;
 	private static String bookStatus;
-	
-	 
+
 	static TradeData tradeData = new TradeData();
 	static ArrayList<TradeData> tradeTable = new ArrayList<>();
 	static String inr;
 
 	public void process() {
-		
+
 		Scanner sc = new Scanner(System.in);
 		float rate = 66.00f;
 		tranferRate = rate;
@@ -55,6 +54,9 @@ public class TradePrint {
 			book(sc);
 		} else if (("no").equalsIgnoreCase(getRate) || ("n").equalsIgnoreCase(getRate)) {
 			book(sc);
+		} else {
+			System.out.println("Please enter valid option ");
+			isgetRate(sc);
 		}
 	}
 
@@ -66,7 +68,7 @@ public class TradePrint {
 			String currency = formatter.format(usdToinr);
 			return currency;
 		}
-		System.out.println("Please Enter Positive Value");
+		System.out.println("Please Enter valid amount");
 		return inrConverter(sc);
 	}
 
@@ -79,19 +81,22 @@ public class TradePrint {
 			System.out.println(
 					"\nTrade for " + CurrencyPair + " has been booked with rate " + tranferRate + " , The amount of Rs "
 							+ transferAmount + " will  be transferred in 2 working days to " + username + "..\n");
-		} else {
+		} else if ("cancel".equalsIgnoreCase(bookStatus)) {
 			System.out.println("Trade is Canceled.");
+		} else {
+			System.out.println("Please enter valid option ");
+			book(sc);
 		}
 	}
 
 	public void printData() {
-		
-		if(!tradeTable.isEmpty()) {
-			System.out.println("TradeNo" + "\tCurrencyPair" + "\tCustomerName" + "\tAmount" + "\tRate");
-		for (TradeData s : tradeTable) 
-			System.out.println(s.getTradeNo() + "\t" + s.getCurrencyPair().toUpperCase() + "\t" + s.getUsername() + "\t"
-					+ s.getTransferAmount() + "\t" + s.getTranferRate());
-		}else {
+
+		if (!tradeTable.isEmpty()) {
+			System.out.println("TradeNo" + "\tCurrencyPair" + "\tCustomerName" + "\t\tAmount" + "\tRate");
+			for (TradeData s : tradeTable)
+				System.out.println(s.getTradeNo() + "\t" + s.getCurrencyPair().toUpperCase() + "\t\t" + s.getUsername()
+						+ "\t\t" + s.getTransferAmount() + "\t" + s.getTranferRate());
+		} else {
 			System.out.println("Table empty...\n");
 		}
 	}

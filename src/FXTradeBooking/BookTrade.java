@@ -47,5 +47,6 @@ public class BookTrade {
 				System.out.println("Invalid choice try again");
 				showTadingOperations();
 			}
+			scanner.close();
 		}
 	}
