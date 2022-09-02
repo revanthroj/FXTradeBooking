@@ -26,7 +26,7 @@ public class TradePrint {
 		float rate = 66.00f;
 		tranferRate = rate;
 		System.out.println("Enter customer Name");
-		username = sc.next();
+		username = sc.nextLine();
 		currencyPair = currencyCheck();
 		System.out.println("Enter amount to transfer");
 		transferAmount = inrConverter();
