@@ -12,6 +12,7 @@ public class TradePrint {
 	private static String transferAmount;
 	private static float tranferRate;
 
+	static String CurrencyPair = "USDINR";
 	private static Long usdToinr;
 	private static String bookStatus;
 
@@ -37,10 +38,10 @@ public class TradePrint {
 	private static String currencyCheck() {
 		System.out.println("Enter Currency Pair");
 		String currencyPair = sc.next();
-		if ("USDINR".equalsIgnoreCase(currencyPair)) {
+		if (CurrencyPair.equalsIgnoreCase(currencyPair)) {
 			return currencyPair;
 		}
-		System.out.println("Only USRINR is accepted Try Again..");
+		System.out.println("Only" + CurrencyPair + " is accepted Try Again..");
 		return currencyCheck();
 	}
 
@@ -73,8 +74,9 @@ public class TradePrint {
 		if ("book".equalsIgnoreCase(bookStatus)) {
 			tradeData = new TradeData(trNo, username, currencyPair, transferAmount, tranferRate);
 			tradeTable.add(tradeData);
-			System.out.println("\nTrade for USDINR has been booked with rate " + tranferRate + " , The amount of Rs "
-					+ transferAmount + " will  be transferred in 2 working days to " + username + "..\n");
+			System.out.println(
+					"\nTrade for " + CurrencyPair + " has been booked with rate " + tranferRate + " , The amount of Rs "
+							+ transferAmount + " will  be transferred in 2 working days to " + username + "..\n");
 		} else {
 			trNo--;
 			System.out.println("Trade is Canceled.");
