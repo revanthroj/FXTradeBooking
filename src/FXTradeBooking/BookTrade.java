@@ -4,9 +4,13 @@ import java.util.Scanner;
 
 public class BookTrade {
 	public static void main(String[] args) {
+		showTadingOperations();
+	}
+
+	private static void showTadingOperations() {
 		String yesOrno;
 		TradePrint trade = new TradePrint();
-
+		
 		try (Scanner scanner = new Scanner(System.in)) {
 			boolean flag = false;
 			int choice;
@@ -40,7 +44,7 @@ public class BookTrade {
 
 			} catch (Exception e) {
 				System.out.println("Invalid choice try again");
-
+				showTadingOperations();
 			}
 		}
 	}

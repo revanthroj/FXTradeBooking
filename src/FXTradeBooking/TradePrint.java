@@ -13,6 +13,7 @@ public class TradePrint {
 	private static float tranferRate;
 
 	static String CurrencyPair = "USDINR";
+
 	private static Long usdToinr;
 	private static String bookStatus;
 
@@ -22,7 +23,6 @@ public class TradePrint {
 	static String inr;
 
 	public void process() {
-		trNo++;
 		float rate = 66.00f;
 		tranferRate = rate;
 		System.out.println("Enter customer Name");
@@ -60,7 +60,7 @@ public class TradePrint {
 		Long transAmountLong = sc.nextLong();
 		if (transAmountLong > 0) {
 			usdToinr = (long) (transAmountLong * tranferRate);
-			NumberFormat formatter = NumberFormat.getCurrencyInstance(new Locale("en", "IN"));
+			NumberFormat formatter = NumberFormat.getCurrencyInstance(new Locale("en", "in"));
 			String currency = formatter.format(usdToinr);
 			return currency;
 		}
@@ -72,13 +72,12 @@ public class TradePrint {
 		System.out.println("Book/Cancel this trade?");
 		bookStatus = sc.next();
 		if ("book".equalsIgnoreCase(bookStatus)) {
-			tradeData = new TradeData(trNo, username, currencyPair, transferAmount, tranferRate);
+			tradeData = new TradeData(++trNo, username, currencyPair, transferAmount, tranferRate);
 			tradeTable.add(tradeData);
 			System.out.println(
 					"\nTrade for " + CurrencyPair + " has been booked with rate " + tranferRate + " , The amount of Rs "
 							+ transferAmount + " will  be transferred in 2 working days to " + username + "..\n");
 		} else {
-			trNo--;
 			System.out.println("Trade is Canceled.");
 		}
 	}
