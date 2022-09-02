@@ -16,47 +16,49 @@ public class TradePrint {
 
 	private static Long usdToinr;
 	private static String bookStatus;
-
-	static Scanner sc = new Scanner(System.in);
+	
+	 
 	static TradeData tradeData = new TradeData();
 	static ArrayList<TradeData> tradeTable = new ArrayList<>();
 	static String inr;
 
 	public void process() {
+		
+		Scanner sc = new Scanner(System.in);
 		float rate = 66.00f;
 		tranferRate = rate;
 		System.out.println("Enter customer Name");
 		username = sc.nextLine();
-		currencyPair = currencyCheck();
+		System.out.println("Enter Currency Pair");
+		currencyPair = currencyCheck(sc);
 		System.out.println("Enter amount to transfer");
-		transferAmount = inrConverter();
+		transferAmount = inrConverter(sc);
 		System.out.println("Do you want to get Rate");
-		isgetRate();
+		isgetRate(sc);
 
 	}
 
-	private static String currencyCheck() {
-		System.out.println("Enter Currency Pair");
+	private static String currencyCheck(Scanner sc) {
 		String currencyPair = sc.next();
 		if (CurrencyPair.equalsIgnoreCase(currencyPair)) {
 			return currencyPair;
 		}
 		System.out.println("Only" + CurrencyPair + " is accepted Try Again..");
-		return currencyCheck();
+		return currencyCheck(sc);
 	}
 
-	private static void isgetRate() {
+	private static void isgetRate(Scanner sc) {
 		String getRate = sc.next();
 		if (("yes").equalsIgnoreCase(getRate) || ("y").equalsIgnoreCase(getRate)) {
 			System.out.println("\nYou are transferring INR " + transferAmount + " to " + username
 					+ "(Assuming that rate was " + tranferRate + ")\n");
-			book();
+			book(sc);
 		} else if (("no").equalsIgnoreCase(getRate) || ("n").equalsIgnoreCase(getRate)) {
-			book();
+			book(sc);
 		}
 	}
 
-	private static String inrConverter() {
+	private static String inrConverter(Scanner sc) {
 		Long transAmountLong = sc.nextLong();
 		if (transAmountLong > 0) {
 			usdToinr = (long) (transAmountLong * tranferRate);
@@ -65,10 +67,10 @@ public class TradePrint {
 			return currency;
 		}
 		System.out.println("Please Enter Positive Value");
-		return inrConverter();
+		return inrConverter(sc);
 	}
 
-	private static void book() {
+	private static void book(Scanner sc) {
 		System.out.println("Book/Cancel this trade?");
 		bookStatus = sc.next();
 		if ("book".equalsIgnoreCase(bookStatus)) {

@@ -10,10 +10,11 @@ public class BookTrade {
 	private static void showTadingOperations() {
 		String yesOrno;
 		TradePrint trade = new TradePrint();
+		Scanner scanner = new Scanner(System.in);
 
-		try (Scanner scanner = new Scanner(System.in)) {
+		
 			boolean flag = false;
-			int choice;
+			int choice = 2;
 
 			try {
 
@@ -40,7 +41,7 @@ public class BookTrade {
 							break;
 					}
 
-				} while (flag == false);
+				} while (!flag);
 
 			} catch (Exception e) {
 				System.out.println("Invalid choice try again");
@@ -48,4 +49,3 @@ public class BookTrade {
 			}
 		}
 	}
-}
