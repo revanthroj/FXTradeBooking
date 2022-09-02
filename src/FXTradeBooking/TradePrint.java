@@ -85,10 +85,14 @@ public class TradePrint {
 	}
 
 	public void printData() {
-		System.out.println("TradeNo" + "\tCurrencyPair" + "\tCustomerName" + "\tAmount" + "\tRate");
-		for (TradeData s : tradeTable) {
+		
+		if(!tradeTable.isEmpty()) {
+			System.out.println("TradeNo" + "\tCurrencyPair" + "\tCustomerName" + "\tAmount" + "\tRate");
+		for (TradeData s : tradeTable) 
 			System.out.println(s.getTradeNo() + "\t" + s.getCurrencyPair().toUpperCase() + "\t" + s.getUsername() + "\t"
 					+ s.getTransferAmount() + "\t" + s.getTranferRate());
+		}else {
+			System.out.println("Table empty...\n");
 		}
 	}
 }
