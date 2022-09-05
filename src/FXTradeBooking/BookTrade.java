@@ -9,7 +9,7 @@ public class BookTrade {
 
 	private static void showTadingOperations() {
 		String yesOrno;
-		TradePrint trade = new TradePrint();
+		TradeBookingProcess tradeBookingProcess = new TradeBookingProcess();
 		Scanner scanner = new Scanner(System.in);
 
 		
@@ -23,10 +23,10 @@ public class BookTrade {
 					choice = scanner.nextInt();
 					switch (choice) {
 						case 1:
-							trade.process();
+							tradeBookingProcess.initiateBooking();
 							break;
 						case 2:
-							trade.printData();
+							tradeBookingProcess.printTradeTable();
 							break;
 						case 3:
 							System.out.println("Do you really want to exit (y/n)");

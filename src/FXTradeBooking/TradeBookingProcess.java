@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Scanner;
 
-public class TradePrint {
+public class TradeBookingProcess {
 	static Long trNo = 0L;
 	private static String username;
 	private static String currencyPair;
@@ -15,13 +15,13 @@ public class TradePrint {
 	static String CurrencyPair = "USDINR";
 
 	private static Long usdToinr;
-	private static String bookStatus;
+	private static String bookingStatus;
 
 	static TradeData tradeData = new TradeData();
 	static ArrayList<TradeData> tradeTable = new ArrayList<>();
 	static String inr;
 
-	public void process() {
+	public void initiateBooking() {
 
 		Scanner sc = new Scanner(System.in);
 		float rate = 66.00f;
@@ -29,7 +29,7 @@ public class TradePrint {
 		System.out.println("Enter customer Name");
 		username = sc.nextLine();
 		System.out.println("Enter Currency Pair");
-		currencyPair = currencyCheck(sc);
+		currencyPair = currencyPairCheck(sc);
 		System.out.println("Enter amount to transfer");
 		transferAmount = inrConverter(sc);
 		System.out.println("Do you want to get Rate");
@@ -37,23 +37,23 @@ public class TradePrint {
 
 	}
 
-	private static String currencyCheck(Scanner sc) {
+	private static String currencyPairCheck(Scanner sc) {
 		String currencyPair = sc.next();
 		if (CurrencyPair.equalsIgnoreCase(currencyPair)) {
 			return currencyPair;
 		}
 		System.out.println("Only" + CurrencyPair + " is accepted Try Again..");
-		return currencyCheck(sc);
+		return currencyPairCheck(sc);
 	}
 
 	private static void isgetRate(Scanner sc) {
-		String getRate = sc.next();
-		if (("yes").equalsIgnoreCase(getRate) || ("y").equalsIgnoreCase(getRate)) {
+		String rateYesOrNo = sc.next();
+		if (("yes").equalsIgnoreCase(rateYesOrNo) || ("y").equalsIgnoreCase(rateYesOrNo)) {
 			System.out.println("\nYou are transferring INR " + transferAmount + " to " + username
 					+ "(Assuming that rate was " + tranferRate + ")\n");
-			book(sc);
-		} else if (("no").equalsIgnoreCase(getRate) || ("n").equalsIgnoreCase(getRate)) {
-			book(sc);
+			bookTrade(sc);
+		} else if (("no").equalsIgnoreCase(rateYesOrNo) || ("n").equalsIgnoreCase(rateYesOrNo)) {
+			bookTrade(sc);
 		} else {
 			System.out.println("Please enter valid option ");
 			isgetRate(sc);
@@ -72,24 +72,24 @@ public class TradePrint {
 		return inrConverter(sc);
 	}
 
-	private static void book(Scanner sc) {
+	private static void bookTrade(Scanner sc) {
 		System.out.println("Book/Cancel this trade?");
-		bookStatus = sc.next();
-		if ("book".equalsIgnoreCase(bookStatus)) {
+		bookingStatus = sc.next();
+		if ("book".equalsIgnoreCase(bookingStatus)) {
 			tradeData = new TradeData(++trNo, username, currencyPair, transferAmount, tranferRate);
 			tradeTable.add(tradeData);
 			System.out.println(
-					"\nTrade for " + CurrencyPair + " has been booked with rate " + tranferRate + " , The amount of Rs "
-							+ transferAmount + " will  be transferred in 2 working days to " + username + "..\n");
-		} else if ("cancel".equalsIgnoreCase(bookStatus)) {
+					"\nTrade for " + CurrencyPair + " has been booked with rate " + tranferRate + ", The amount of Rs "
+							+ transferAmount + " will be transferred in 2 working days to " + username + ".\n");
+		} else if ("cancel".equalsIgnoreCase(bookingStatus)) {
 			System.out.println("Trade is Canceled.");
 		} else {
 			System.out.println("Please enter valid option ");
-			book(sc);
+			bookTrade(sc);
 		}
 	}
 
-	public void printData() {
+	public void printTradeTable() {
 
 		if (!tradeTable.isEmpty()) {
 			System.out.println("TradeNo" + "\tCurrencyPair" + "\tCustomerName" + "\t\tAmount" + "\tRate");
