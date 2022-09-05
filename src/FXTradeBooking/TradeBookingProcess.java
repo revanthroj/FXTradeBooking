@@ -6,7 +6,7 @@ import java.util.Locale;
 import java.util.Scanner;
 
 public class TradeBookingProcess {
-	static Long trNo = 0L;
+	static Long tradeNo = 0L;
 	private static String username;
 	private static String currencyPair;
 	private static String transferAmount;
@@ -76,7 +76,7 @@ public class TradeBookingProcess {
 		System.out.println("Book/Cancel this trade?");
 		bookingStatus = sc.next();
 		if ("book".equalsIgnoreCase(bookingStatus)) {
-			tradeData = new TradeData(++trNo, username, currencyPair, transferAmount, tranferRate);
+			tradeData = new TradeData(++tradeNo, username, currencyPair, transferAmount, tranferRate);
 			tradeTable.add(tradeData);
 			System.out.println(
 					"\nTrade for " + CurrencyPair + " has been booked with rate " + tranferRate + ", The amount of Rs "
